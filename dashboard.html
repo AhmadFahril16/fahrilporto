@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Layout</title>
+    <title>dashboard</title>
     <style>
         body {
             margin: 0;
@@ -17,7 +17,6 @@
         }
 
         .header {
-            width: 100%;
             text-align: center;
             padding: 2rem 0;
         }
@@ -25,7 +24,7 @@
         .container {
             display: flex;
             flex: 1;
-            padding: 0 2rem 2rem 2rem;
+            padding: 2rem;
             gap: 2rem;
         }
 
@@ -49,10 +48,6 @@
             margin-bottom: 1rem;
             font-weight: 700;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            outline: rgb(0, 0, 0) dotted 3px;
-            outline-offset: 1px;
-            display: inline-block;
-            padding: 0 2rem;
         }
 
         .description {
@@ -77,6 +72,8 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .btn-primary {
@@ -95,6 +92,11 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
+        .btn:active {
+            transform: translateY(1px);
+            box-shadow: none;
+        }
+
         .image-placeholder {
             width: 100%;
             height: 400px;
@@ -110,6 +112,13 @@
             color: rgba(255, 255, 255, 0.5);
             font-size: 1.2rem;
         }
+
+        .copyright {
+            text-align: center;
+            padding: 1rem 0;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
     </style>
 </head>
 <body>
@@ -123,8 +132,8 @@
                 <p>I enjoy solving technical challenges, exploring new technologies, and transforming complex problems into practical, user-friendly web-based solutions. I'm always eager to collaborate on meaningful and innovative projects that make a real impact.</p>
             </div>
             <div class="buttons">
-                <button class="btn btn-primary">see my project</button>
-                <button class="btn btn-secondary">Contact me</button>
+                <button class="btn btn-primary">See my project</button>
+                <button class="btn btn-secondary">Contact us</button>
             </div>
         </div>
         <div class="image-section">
@@ -132,6 +141,9 @@
                 <span>Your Image Goes Here</span>
             </div>
         </div>
+    </div>
+    <div class="copyright">
+        &copy; 2023 Ahmad Fahril. All rights reserved.
     </div>
 </body>
 </html>
