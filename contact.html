@@ -1,121 +1,118 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kontak Saya</title>
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-    <script>
-        window.onload = function () {
-            emailjs.init("igTsGjehIBv098d7w"); // Ganti dengan user ID kamu
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Form Kontak</title>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    window.onload = function () {
+      emailjs.init("igTsGjehIBv098d7w"); // Ganti dengan Public Key kamu (User ID)
 
-            const form = document.getElementById("contact-form");
+      const form = document.getElementById("kerjasama-form");
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
 
-            form.addEventListener("submit", function (e) {
-                e.preventDefault();
-
-                // DEBUG: tampilkan data form di console
-                const formData = new FormData(form);
-                for (let [key, value] of formData.entries()) {
-                    console.log(`${key}: ${value}`);
-                }
-
-                emailjs
-                    .sendForm("service_623lukq", "template_zi8d6a4", form)
-                    .then(() => {
-                        alert("Pesan berhasil dikirim!");
-                        form.reset();
-                    })
-                    .catch((error) => {
-                        console.error("EmailJS error:", error);
-                        alert("Gagal mengirim pesan.");
-                    });
-            });
-        };
-    </script>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-            background: linear-gradient(135deg, #00d2ff, #001f4d, #40E0D0);
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        form {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            max-width: 500px;
-            width: 100%;
-        }
-        label {
-            display: block;
-            margin-top: 1rem;
-            font-weight: bold;
-        }
-        input, textarea, select {
-            width: 100%;
-            padding: 0.75rem;
-            margin-top: 0.3rem;
-            border: none;
-            border-radius: 5px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            font-size: 1rem;
-        }
-        input::placeholder, textarea::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-        button {
-            margin-top: 1.5rem;
-            padding: 0.8rem 1.5rem;
-            border: none;
-            border-radius: 30px;
-            font-size: 1rem;
-            font-weight: bold;
-            background-color: #00d2ff;
-            color: #001f4d;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-    </style>
+        emailjs.sendForm("service_623lukq", "kerjasama_template", this)
+          .then(() => {
+            alert("Pesan berhasil dikirim!");
+            form.reset();
+          })
+          .catch((error) => {
+            console.error("EmailJS error:", error);
+            alert("Gagal mengirim pesan: " + JSON.stringify(error));
+          });
+      });
+    };
+  </script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: linear-gradient(135deg, #00d2ff, #001f4d, #40E0D0);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    form {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      max-width: 500px;
+      width: 100%;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 0.3rem;
+      border: none;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      font-size: 1rem;
+    }
+    input::placeholder, textarea::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+    button {
+      margin-top: 1.5rem;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: bold;
+      background-color: #00d2ff;
+      color: #001f4d;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+  </style>
 </head>
 <body>
 
-    <form id="contact-form">
-        <h2>Form Kontak</h2>
+  <form id="kerjasama-form">
+    <h2>Form Kontak</h2>
 
-        <label for="from_name">Nama:</label>
-        <input type="text" id="from_name" name="from_name" placeholder="Nama Anda" required />
+    <label for="name">Nama:</label>
+    <input type="text" id="name" name="name" placeholder="Nama Anda" required />
 
-        <label for="reply_to">Email:</label>
-        <input type="email" id="reply_to" name="reply_to" placeholder="Email Anda" required />
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="Email Anda" required />
 
-        <label for="user_whatsapp">No WhatsApp (opsional):</label>
-        <input type="text" id="user_whatsapp" name="user_whatsapp" placeholder="No WhatsApp Anda" />
+    <label for="user_whatsapp">No WhatsApp (opsional):</label>
+    <input type="text" id="user_whatsapp" name="user_whatsapp" placeholder="No WhatsApp Anda" />
 
-        <label for="message">Pesan:</label>
-        <textarea id="message" name="message" rows="5" placeholder="Tulis pesan di sini..." required></textarea>
+    <label for="message">Pesan:</label>
+    <textarea id="message" name="message" rows="5" placeholder="Tulis pesan di sini..." required></textarea>
 
-        <label for="request_type">Jenis Permintaan:</label>
-        <select id="request_type" name="request_type" required>
-            <option value="" disabled selected>-- Pilih Jenis Permintaan --</option>
-            <option value="Kerjasama">Kerjasama</option>
-            <option value="Pertanyaan">Pertanyaan</option>
-            <option value="Pembelian Website">Pembelian Website</option>
-        </select>
+    <label for="request_type">Jenis Permintaan:</label>
+    <select id="request_type" name="request_type" required>
+      <option value="" disabled selected>-- Pilih Jenis Permintaan --</option>
+      <option value="Kerjasama">Kerjasama</option>
+      <option value="Pertanyaan">Pertanyaan</option>
+      <option value="Pembelian Website">Pembelian Website</option>
+    </select>
 
-        <button type="submit">Kirim</button>
-    </form>
+    <button type="submit">Kirim</button>
+  </form>
 
 </body>
 </html>
