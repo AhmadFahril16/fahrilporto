@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>dashboard</title>
+    <title>Dashboard</title>
     <style>
         body {
             margin: 0;
@@ -14,6 +14,7 @@
             color: white;
             display: flex;
             flex-direction: column;
+            overflow: hidden; /* Prevent scroll during animation */
         }
 
         .header {
@@ -21,11 +22,22 @@
             padding: 2rem 0;
         }
 
+        .title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            opacity: 0; /* Start hidden */
+            transform: translateY(-20px); /* Start above */
+            transition: opacity 0.5s ease, transform 0.5s ease; /* Transition for animation */
+        }
+
         .container {
             display: flex;
             flex: 1;
             padding: 2rem;
             gap: 2rem;
+            flex-wrap: wrap; /* Allow wrapping for smaller screens */
         }
 
         .content-section {
@@ -34,20 +46,7 @@
             flex-direction: column;
             justify-content: center;
             padding-right: 2rem;
-        }
-
-        .image-section {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .title {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            min-width: 300px; /* Minimum width for content section */
         }
 
         .description {
@@ -56,12 +55,18 @@
             line-height: 1.6;
             margin-bottom: 2rem;
             max-width: 600px;
+            opacity: 0; /* Start hidden */
+            transform: translateY(20px); /* Start below */
+            transition: opacity 0.5s ease, transform 0.5s ease; /* Transition for animation */
         }
 
         .buttons {
             display: flex;
             gap: 1rem;
             margin-top: 1rem;
+            opacity: 0; /* Start hidden */
+            transform: translateY(20px); /* Start below */
+            transition: opacity 0.5s ease, transform 0.5s ease; /* Transition for animation */
         }
 
         .btn {
@@ -97,20 +102,22 @@
             box-shadow: none;
         }
 
-        .image-placeholder {
-            width: 100%;
-            height: 400px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
+        .image-section {
+            flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 2px dashed rgba(255, 255, 255, 0.3);
+            min-width: 300px; /* Minimum width for image section */
+            opacity: 0; /* Start hidden */
+            transition: opacity 0.5s ease; /* Transition for animation */
         }
 
-        .image-placeholder span {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 1.2rem;
+        .image-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px; /* Optional: Add rounded corners to the image */
+            filter: blur(5px); /* Start blurred */
+            transition: filter 0.5s ease; /* Transition for unblur */
         }
 
         .copyright {
@@ -123,29 +130,65 @@
 </head>
 <body>
     <div class="header">
-        <h1 class="title">Hi, I'm Ahmad Fahril | Junior Web Developer</h1>
+        <h1 class="title" id="title">Hi, I'm Ahmad Fahril | Junior Web Developer</h1>
     </div>
     <div class="container">
         <div class="content-section">
-            <div class="description">
+            <div class="description" id="description">
                 <p>I'm Ahmad Fahril — a passionate junior web developer and a vocational high school student majoring in Electronics Engineering. I specialize in building responsive and interactive websites, particularly those integrated with IoT technologies. I have hands-on experience with ESP8266/ESP32, Firebase Realtime Database, Firestore, MySQL, and MQTT protocols. I've developed real-time control systems using WebSocket and cloud databases to power smart applications.</p>
                 <p>I enjoy solving technical challenges, exploring new technologies, and transforming complex problems into practical, user-friendly web-based solutions. I'm always eager to collaborate on meaningful and innovative projects that make a real impact.</p>
             </div>
-            <div class="buttons">
-                <button class="btn btn-primary">See my project</button>
-                <button class="btn btn-secondary">Contact us</button>
+            <div class="buttons" id="buttons">
+                <a href="see.html" class="btn btn-primary">See my project</a>
+                <a href="contact.html" class="btn btn-secondary">Contact us</a>
             </div>
         </div>
-        <div class="image-section">
-            <div class="image-placeholder">
-                <span>
-                    <img src="https://raw.githubusercontent.com/AhmadFahril16/fahrilporto/main/images/coder1.png" alt="Coding is my ninja way." />
-               </span>
-            </div>
+        <div class="image-section" id="imageSection">
+            <img src="https://raw.githubusercontent.com/AhmadFahril16/fahrilporto/main/images/coder1.png" alt="Coding is my ninja way." />
         </div>
     </div>
     <div class="copyright">
         &copy; 2023 Ahmad Fahril. All rights reserved.
     </div>
+
+    <script>
+        // Function to animate title
+        function animateTitle() {
+            const title = document.getElementById('title');
+            const text = title.textContent;
+            title.textContent = '';
+            text.split('').forEach((char, index) => {
+                setTimeout(() => {
+                    title.textContent += char;
+                    title.style.opacity = 1; // Fade in title
+                }, index * 100); // Delay for each character
+            });
+        }
+
+        // Function to animate description and buttons
+        function animateDescriptionAndButtons() {
+            const description = document.getElementById('description');
+            const buttons = document.getElementById('buttons');
+            description.style.opacity = 1; // Fade in description
+            description.style.transform = 'translateY(0)'; // Move to original position
+            buttons.style.opacity = 1; // Fade in buttons
+            buttons.style.transform = 'translateY(0)'; // Move to original position
+        }
+
+        // Function to animate image
+        function animateImage() {
+            const imageSection = document.getElementById('imageSection');
+            const img = imageSection.querySelector('img');
+            imageSection.style.opacity = 1; // Fade in image section
+            img.style.filter = 'blur(0)'; // Remove blur
+        }
+
+        // Start animations after page load
+        window.onload = function() {
+            animateTitle();
+            setTimeout(animateDescriptionAndButtons, 1000); // Delay for description and buttons
+            setTimeout(animateImage, 2000); // Delay for image
+        };
+    </script>
 </body>
 </html>
