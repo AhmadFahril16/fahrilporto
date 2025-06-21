@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Layout</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #00d2ff, #001f4d, #40E0D0);
+            color: white;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            width: 100%;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .container {
+            display: flex;
+            flex: 1;
+            padding: 0 2rem 2rem 2rem;
+            gap: 2rem;
+        }
+
+        .content-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-right: 2rem;
+        }
+
+        .image-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            outline: rgb(0, 0, 0) dotted 3px;
+            outline-offset: 1px;
+            display: inline-block;
+            padding: 0 2rem;
+        }
+
+        .description {
+            text-align: left;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #00d2ff;
+            color: #001f4d;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 400px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+        }
+
+        .image-placeholder span {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 class="title">Your Title Here</h1>
+    </div>
+    <div class="container">
+        <div class="content-section">
+            <div class="description">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor.</p>
+                <p>Suspendisse potenti. Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est.</p>
+            </div>
+            <div class="buttons">
+                <button class="btn btn-primary">Primary Action</button>
+                <button class="btn btn-secondary">Secondary Action</button>
+            </div>
+        </div>
+        <div class="image-section">
+            <div class="image-placeholder">
+                <span>Your Image Goes Here</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
