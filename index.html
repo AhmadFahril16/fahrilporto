@@ -1,9 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Opening Animation</title>
+    <title>Jasa Pembuatan Website Murah | Portofolio Ahmad Fahril</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Jasa pembuatan website murah mulai dari Rp 20.000. Portofolio Ahmad Fahril sebagai Web & IoT Developer. Web design service mulai dari $2.">
+    <meta name="keywords" content="jasa pembuatan website, jasa buat web murah, web design mulai dari 20 ribu, web developer indonesia, Ahmad Fahril portfolio, web design services from $2, esp8266, firebase">
+    <meta name="author" content="Ahmad Fahril">
+
+    <!-- Schema.org JSON-LD (opsional tapi powerful untuk SEO Google) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Ahmad Fahril",
+      "jobTitle": "Web Developer",
+      "url": "https://ahmadfahril16.github.io/fahrilporto/",
+      "description": "Jasa pembuatan website murah mulai dari Rp 20.000. Web & IoT Developer, proyek berbasis ESP dan Firebase.",
+      "sameAs": ["https://github.com/AhmadFahril16"]
+    }
+    </script>
+
     <style>
         body {
             margin: 0;
@@ -47,7 +66,14 @@
             opacity: 0;
             animation: fadeIn 0.5s 2s forwards, pulse 0.5s infinite alternate;
         }
-        
+
+        /* SEO hidden text for crawler (not visible but indexable) */
+        .seo-text {
+            position: absolute;
+            left: -9999px;
+            visibility: hidden;
+        }
+
         @keyframes moveIn {
             0% {
                 transform: translateY(-100px) rotate(-10deg);
@@ -95,6 +121,13 @@
     <div class="container">
         <h1 class="name">AHMAD FAHRIL</h1>
         <div class="countdown" id="countdown">5</div>
+    </div>
+
+    <!-- SEO Support Content (invisible) -->
+    <div class="seo-text">
+        Ahmad Fahril adalah seorang Web Developer dan IoT Enthusiast yang menawarkan jasa pembuatan website murah mulai dari Rp 20.000.  
+        Web design services starting from $2 dollars.  
+        Lihat portofolio lengkap proyek-proyek berbasis ESP dan Firebase yang profesional dan berkualitas.
     </div>
 
     <script>
