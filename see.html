@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Project</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #00d2ff, #001f4d, #40E0D0);
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header Styles */
+        .header-bg {
+            background-color: #001f4d;
+            padding: 20px 0 30px 0;
+            width: 100%;
+        }
+        
+        .search-container {
+            margin-top: 15px;
+            padding: 0 20px;
+            position: relative;
+        }
+        
+        /* Device Mockups */
+        .laptop-mockup {
+            width: 600px;
+            height: 340px;
+            background: #e6e6e6;
+            border-radius: 10px 10px 0 0;
+            padding: 10px;
+            position: relative;
+            margin: 0 auto 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .laptop-screen {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .laptop-keyboard {
+            width: 100%;
+            height: 20px;
+            background: #333;
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            border-radius: 0 0 5px 5px;
+            display: flex;
+            justify-content: center;
+            padding-top: 5px;
+        }
+        
+        .keyboard-row {
+            display: flex;
+            gap: 3px;
+        }
+        
+        .key {
+            width: 30px;
+            height: 5px;
+            background: #555;
+            border-radius: 2px;
+        }
+        
+        .space-bar {
+            width: 100px;
+            height: 5px;
+            background: #555;
+            border-radius: 2px;
+            margin: 0 auto;
+        }
+        
+        .mobile-mockup {
+            width: 200px;
+            height: 370px;
+            background: #f1f1f1;
+            border-radius: 30px;
+            padding: 5px;
+            border: 5px solid #222;
+            position: relative;
+            margin: 20px auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .mobile-screen {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            border-radius: 25px;
+            overflow: hidden;
+        }
+        
+        .mobile-home {
+            width: 30px;
+            height: 30px;
+            border: 2px solid #ddd;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Project Layout */
+        .project-container {
+            margin: 30px auto;
+            max-width: 800px;
+            position: relative;
+            flex: 1;
+        }
+        
+        .project-header {
+            text-align: center;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .project-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+        }
+        
+        .project-description {
+            max-width: 600px;
+            margin: 0 auto 25px;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .demo-button {
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        
+        .demo-button:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        /* Search Functionality */
+        .search-results {
+            display: none;
+            margin-top: 20px;
+            padding: 10px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 5px;
+            position: absolute;
+            width: 100%;
+            z-index: 10;
+        }
+        
+        /* Footer and Back Button */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0,0,0,0.2);
+            margin-top: auto;
+        }
+        
+        .back-to-dashboard {
+            display: block;
+            margin: 20px auto;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: fit-content;
+        }
+        
+        .back-to-dashboard:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .copyright {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .laptop-mockup {
+                width: 90%;
+                height: 250px;
+            }
+            
+            .mobile-mockup {
+                width: 180px;
+                height: 350px;
+            }
+            
+            .project-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .search-container input {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with extended dark blue background -->
+    <header class="header-bg">
+        <div class="container mx-auto">
+            <div class="flex justify-between items-center px-4">
+                <h1 class="text-3xl font-bold">My Project</h1>
+                <div class="search-container">
+                    <input id="searchInput" type="text" placeholder="Search projects..." 
+                           class="px-3 py-1 rounded w-64 text-gray-900">
+                    <div id="searchResults" class="search-results"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4">
+        <!-- Project 1 -->
+        <div class="project-container" data-project="ecommerce">
+            <div class="project-header">
+                <h2 class="project-title">E-Commerce Platform</h2>
+                <a href="https://ecommerce-demo.example.com" class="demo-button" target="_blank">
+                    Demo Website →
+                </a>
+            </div>
+            <p class="project-description">
+                A complete online shopping solution with product management, shopping cart, 
+                and secure payment processing.
+            </p>
+            
+            <div class="laptop-mockup">
+                <div class="laptop-screen">
+                    <video autoplay muted loop>
+                        <source src="https://github.com/username/repo/raw/main/videos/ecommerce.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="laptop-keyboard">
+                    <div class="keyboard-row">
+                        <div class="key"></div>
+                        <div class="key"></div>
+                        <div class="key"></div>
+                        <div class="key"></div>
+                        <div class="key"></div>
+                        <div class="key"></div>
+                        <div class="key"></div>
+                        <div class="key"></div>
+                        <div class="key"></div>
+                        <div class="key"></div>
+                    </div>
+                    <div class="space-bar"></div>
+                </div>
+            </div>
+            
+            <div class="mobile-mockup">
+                <div class="mobile-screen">
+                    <video autoplay muted loop>
+                        <source src="https://github.com/username/repo/raw/main/videos/ecommerce-mobile.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="mobile-home"></div>
+            </div>
+            
+            <a href="#" class="back-to-dashboard">← Back to Dashboard</a>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-container" data-project="social dashboard">
+            <div class="project-header">
+                <h2 class="project-title">Social Media Dashboard</h2>
+                <a href="https://social-demo.example.com" class="demo-button" target="_blank">
+                    Demo Website →
+                </a>
+            </div>
+            <p class="project-description">
+                Analytics platform for tracking engagement and scheduling posts with
+                real-time data visualization.
+            </p>
+            
+            <div class="laptop-mockup">
+                <div class="laptop-screen">
+                    <video autoplay muted loop>
+                        <source src="https://github.com/username/repo/raw/main/videos/social.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="laptop-keyboard">
+                    <div class="keyboard-row">
+                        <div class="key"></div>
+                        <div class="key"></div>
+                        <div class="key"></div>
+                        <div class="key"></div>
+                        <div class="key"></div>
+                        <div class="key"></div>
+                        <div class="key"></div>
+                        <div class="key"></div>
+                        <div class="key"></div>
+                        <div class="key"></div>
+                    </div>
+                    <div class="space-bar"></div>
+                </div>
+            </div>
+            
+            <div class="mobile-mockup">
+                <div class="mobile-screen">
+                    <video autoplay muted loop>
+                        <source src="https://github.com/username/repo/raw/main/videos/social-mobile.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="mobile-home"></div>
+            </div>
+            
+            <a href="#" class="back-to-dashboard">← Back to Dashboard</a>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-container" data-project="fitness tracker">
+            <div class="project-header">
+                <h2 class="project-title">Fitness Tracker</h2>
+                <a href="https://fitness-demo.example.com" class="demo-button" target="_blank">
+                    Demo Website →
+                </a>
+            </div>
+            <p class="project-description">
+                Comprehensive fitness application that tracks workouts, nutrition,
+                and health metrics with wearable integration.
+            </p>
+            
+            <div class="laptop-mockup">
+                <div class="laptop-screen">
+                    <video autoplay muted loop>
+                        <source src="https://github.com/username/repo/raw/main/videos/fitness.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="laptop-keyboard">
+                    <div class="keyboard-row">
+                        <div class="key"></div>
+                        <div class="key"></div>
+                        <div class="key"></div>
+                        <div class="key"></div>
+                        <div class="key"></div>
+                        <div class="key"></div>
+                        <div class="key"></div>
+                        <div class="key"></div>
+                        <div class="key"></div>
+                        <div class="key"></div>
+                    </div>
+                    <div class="space-bar"></div>
+                </div>
+            </div>
+            
+            <div class="mobile-mockup">
+                <div class="mobile-screen">
+                    <video autoplay muted loop>
+                        <source src="https://github.com/username/repo/raw/main/videos/fitness-mobile.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="mobile-home"></div>
+            </div>
+            
+            <a href="#" class="back-to-dashboard">← Back to Dashboard</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p class="copyright">© 2023 All Rights Reserved. Fully owned by Ahmad Fahril</p>
+    </footer>
+
+    <script>
+        // Search Functionality
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const resultsContainer = document.getElementById('searchResults');
+            resultsContainer.innerHTML = '';
+            
+            if (searchTerm.length < 2) {
+                resultsContainer.style.display = 'none';
+                return;
+            }
+            
+            const projects = document.querySelectorAll('.project-container');
+            let hasResults = false;
+            
+            projects.forEach(project => {
+                const title = project.querySelector('.project-title').textContent.toLowerCase();
+                const description = project.querySelector('.project-description').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    const resultItem = document.createElement('div');
+                    resultItem.textContent = project.querySelector('.project-title').textContent;
+                    resultItem.style.cursor = 'pointer';
+                    resultItem.style.padding = '5px';
+                    resultItem.style.borderBottom = '1px solid rgba(255,255,255,0.1)';
+                    resultItem.addEventListener('click', () => {
+                        project.scrollIntoView({ behavior: 'smooth' });
+                        resultsContainer.style.display = 'none';
+                    });
+                    resultsContainer.appendChild(resultItem);
+                    hasResults = true;
+                }
+            });
+            
+            if (hasResults) {
+                resultsContainer.style.display = 'block';
+            } else {
+                resultsContainer.innerHTML = '<div style="padding:5px;">No projects found</div>';
+                resultsContainer.style.display = 'block';
+            }
+        });
+        
+        // Close search results when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!document.getElementById('searchInput').contains(e.target) && 
+                !document.getElementById('searchResults').contains(e.target)) {
+                document.getElementById('searchResults').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
